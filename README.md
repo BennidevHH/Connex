@@ -12,6 +12,10 @@ React 18 + TypeScript
 
 MongoDB (lokal via Docker)
 
+AWS Hosted
+
+MySQL (lokal via Docker)
+
 Docker Desktop oder Podman
 
 VS Code mit folgenden Plugins:
