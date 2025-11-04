@@ -1,0 +1,10 @@
+.env
+node_modules/
+dist/
+
+# Java
+*.class
+target/
+
+# IDEs
+.vscode/
