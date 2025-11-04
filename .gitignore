@@ -10,5 +10,5 @@ target/
 .vscode/
 
 # Main
-GitHubSetup.md
-CONTRIBUTING.md
+./GitHubSetup.md
+./CONTRIBUTING.md
