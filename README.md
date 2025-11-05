@@ -1,47 +1,30 @@
-# Connex-Communication-Plattform
+# Connex - Fullstack Project (Boilerplate)
 
-A fullstack messaging app inspired by platforms like Discord—designed for seamless real-time communication.
+Structure:
+- backend/  — Spring Boot backend (Java 21, Maven)
+- frontend/ — Vite + React + TypeScript + Tailwind
+- infra/    — docker-compose & DevOps learning docs
 
-## Features
+Quickstart (recommended dev flow):
+1. Backend
+   - cd backend
+   - mvn -DskipTests package
+2. Frontend (dev)
+   - cd frontend
+   - npm install
+   - npm run dev
+3. Or full stack with Docker:
+   - cd infra
+   - docker-compose up --build
+4. Set `JWT_SECRET` env var (in infra/docker-compose.yml or your environment) to a secure value (>=32 chars).
+5. Signup: POST /api/v1/auth/signup with JSON { "username":"test", "password":"pass" }
+6. Login: POST /api/v1/auth/login -> returns { token: "..." } store it in localStorage under "token"
+7. Connect WebSocket (frontend example does this): the client connects to ws endpoint with token as query param. The backend requires token for WS.
 
-- User Authentication & Authorization (Sign Up, Login, Logout)
-- Real-time Messaging with WebSockets
-- Group Chats & Direct Messages
-- User Profiles & Avatars
-- Message History & Search
-- Notifications
-- Responsive Design for Mobile & Desktop
+Notes:
+- MapStruct requires annotation processing during build; run mvn package to generate mappers.
+- Tests: backend includes Testcontainers deps. Expand tests under src/test to use containers.
 
-## Tools & Standards
-
-Node.js LTS + npm/yarn - node version 24.11.0
-
-Java 21 + Maven
-
-React 18 + TypeScript
-
-MongoDB - for message storage
-
-AWS Hosted
-
-MySQL - for user data storage
-
-Docker Desktop oder Podman
-
-## VS-Code (IDE) Extensions
-
-ESLint
-
-Prettier
-
-EditorConfig
-
-GitLens
-
-TailwindCSS IntelliSense
-
-Java Extension Pack
-
-Spring Boot Extension Pack
-
-Docker Extension Pack
+If you want, I can:
+- Add concrete integration tests that run signup->login->verify JWT and DB writes using Testcontainers.
+- Harden production configs and add Kubernetes manifests.

@@ -1,35 +1,51 @@
-version: "3.9"
+version: '3.8'
 services:
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"
+  mysql:
+    image: mysql:8.0
     environment:
-      - VITE_API_URL=http://localhost:8080
-    depends_on:
-      - api
-      - realtime
-
-  api:
-    build: ./backend-java
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: connex
     ports:
-      - "8080:8080"
-    environment:
-      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/connex
-
-  realtime:
-    build: ./backend-node
-    ports:
-      - "3001:3001"
-    environment:
-      - MONGO_URL=mongodb://mongo:27017/connex
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
 
   mongo:
-    image: mongo
+    image: mongo:6
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
 
+  backend:
+    build: ../backend
+    depends_on:
+      - mysql
+      - mongo
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_JDBC_URL=jdbc:mysql://mysql:3306/connex
+      - MONGODB_URI=mongodb://mongo:27017/connex
+      - JWT_SECRET=change-me-for-dev
+    ports:
+      - "8080:8080"
+    networks:
+      - connex-net
+  frontend:
+    build: ../frontend
+    depends_on:
+      - backend
+    environment:
+      - VITE_BACKEND_URL=http://backend:8080
+    ports:
+      - "3000:5173"
+    networks:
+      - connex-net
 volumes:
+  mysql-data:
   mongo-data:
+
+networks:
+  connex-net:
+    driver: bridge

@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:${MONGODB_URI:mongodb://mongo:27017/connex}}
+  datasource:
+    url: ${MYSQL_JDBC_URL:${MYSQL_JDBC_URL:jdbc:mysql://mysql:3306/connex}}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+jwt:
+  secret: ${JWT_SECRET:change-me-to-secure-secret}
+  expiration: ${JWT_EXPIRATION_SECONDS:3600}
+
+logging:
+  level:
+    root: INFO
