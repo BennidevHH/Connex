@@ -1,9 +1,0 @@
-# To Do November
-
-- Vite React Setup
-- Tailwind CSS Integration
-- Java Spring Boot Setup
-- MongoDB Connection
-- MySQL Connection
-- Docker Configuration
-- AWS Deployment Guide
