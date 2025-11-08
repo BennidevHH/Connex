@@ -8,7 +8,3 @@ target/
 
 # IDEs
 .vscode/
-
-# Main
-./GitHubSetup.md
-./CONTRIBUTING.md
