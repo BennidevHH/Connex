@@ -17,3 +17,7 @@
 
 - Spring Boot Version: 3.5.7
 - Java Version: 21
+- Maven Version: 4.0.0
+- MySQL Version: 8.0+
+- MongoDB Version: 6.0+
+- Node.js Version: 24.11.0 LTS
